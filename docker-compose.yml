@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  orderservice:
+    build: ./orders/
+    command: npm start
+    ports:
+      - "3005:3005"
+
+  productsservice:
+    build: ./products/
+    command: npm start
+    ports:
+      - "3006:3006"
+
+  gatewayservice:
+    build: ./api-gateway/
+    command: npm start
+    ports:
+      - "3007:3007"
