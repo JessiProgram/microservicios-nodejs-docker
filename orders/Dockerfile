@@ -1,5 +1,5 @@
 FROM node:alpine
-WORKDIR /usr/src/orderservice
+WORKDIR /usr/src/orders
 COPY package*.json ./
 RUN npm install 
 COPY . . 

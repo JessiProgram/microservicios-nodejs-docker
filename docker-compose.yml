@@ -3,18 +3,27 @@ version: "3"
 services:
   orderservice:
     build: ./orders/
-    command: npm start
     ports:
       - "3005:3005"
+    volumes:
+      - .:/usr/src/orders
+      - /usr/src/orders/node_modules
+    command: npx nodemon --legacy-watch ./orders/index.js
 
   productsservice:
     build: ./products/
-    command: npm start
     ports:
       - "3006:3006"
+    volumes:
+      - .:/usr/src/products
+      - /usr/src/products/node_modules
+    command: npx nodemon --legacy-watch ./products/index.js
 
   gatewayservice:
     build: ./api-gateway/
-    command: npm start
+    command: npx nodemon index.js
     ports:
       - "3007:3007"
+    depends_on:
+      - orderservice
+      - productsservice
